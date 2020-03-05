@@ -35,7 +35,6 @@ namespace DCC.CRM.Utils.GetEntityValue
             IOrganizationServiceFactory serviceFactory = executionContext.GetExtension<IOrganizationServiceFactory>();
             IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
-
             var query = new QueryExpression(EntityName.Get(executionContext)) {TopCount = 1};
             query.ColumnSet.AddColumns(EntityValue.Get(executionContext));
             query.Criteria.AddCondition(EntityKey.Get(executionContext), ConditionOperator.Equal, SearchValue.Get(executionContext));
@@ -50,7 +49,6 @@ namespace DCC.CRM.Utils.GetEntityValue
             {
                 throw new Exception("There are more than one result");
             }
-
 
             Value.Set(executionContext, resutl.Entities[0].GetAttributeValue<string>(EntityValue.Get(executionContext)));
         }
